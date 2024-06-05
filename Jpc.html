@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pierre Feuille Ciseaux</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .choices {
+            margin-top: 20px;
+        }
+
+        button {
+            padding: 10px 20px;
+            margin: 0 10px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .result {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Pierre Feuille Ciseaux</h1>
+        <div class="choices">
+            <button onclick="play('pierre')">Pierre</button>
+            <button onclick="play('feuille')">Feuille</button>
+            <button onclick="play('ciseaux')">Ciseaux</button>
+        </div>
+        <div class="result">
+            <p id="result"></p>
+        </div>
+    </div>
+
+    <script>
+        function play(userChoice) {
+            const choices = ['pierre', 'feuille', 'ciseaux'];
+            const randomIndex = Math.floor(Math.random() * choices.length);
+            const computerChoice = choices[randomIndex];
+
+            let result;
+
+            if (userChoice === computerChoice) {
+                result = "Égalité!";
+            } else if (
+                (userChoice === 'pierre' && computerChoice === 'ciseaux') ||
+                (userChoice === 'feuille' && computerChoice === 'pierre') ||
+                (userChoice === 'ciseaux' && computerChoice === 'feuille')
+            ) {
+                result = "Tu as gagné!";
+            } else {
+                result = "L'ordinateur a gagné!";
+            }
+
+            document.getElementById('result').innerText = `Tu as choisi ${userChoice}, l'ordinateur a choisi ${computerChoice}. ${result}`;
+        }
+    </script>
+</body>
+</html>
+
